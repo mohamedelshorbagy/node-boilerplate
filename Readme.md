@@ -5,6 +5,11 @@ A Command Line Interface for Nodejs Boilerplates
 ## Installiation
 
 To install node-boilerplate from npm, run:
+```
+npm i -g node-boilerplate
+```
+
+
 Windows
 ```
 npm link
