@@ -1,6 +1,6 @@
 {
   "name": "node-boilerplate",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A Command Line Interface for Nodejs Boilerplates",
   "private": true,
   "files": [
@@ -15,6 +15,10 @@
   },
   "scripts": {
     "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohamedelshorbagy/node-boilerplate"
   },
   "author": {
     "name": "Shorbagy",

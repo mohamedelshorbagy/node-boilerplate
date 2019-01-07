@@ -9,6 +9,7 @@ To install node-boilerplate from npm, run:
 npm i -g node-boilerplate
 ```
 
+Or:
 
 Windows
 ```
