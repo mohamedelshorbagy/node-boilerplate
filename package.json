@@ -1,0 +1,40 @@
+{
+  "name": "node-boilerplate",
+  "version": "0.0.0",
+  "description": "A Command Line Interface for Nodejs Boilerplates",
+  "private": true,
+  "files": [
+    "bin",
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "bin": {
+    "node-boilerplate": "./bin/node-boilerplate"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": {
+    "name": "Shorbagy",
+    "email": "mohamedelshorbagy96@gmail.com",
+    "url": "https://github.com/mohamedelshorbagy"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "autocmdr": "~0.0.7",
+    "babel-core": "^6.26.3",
+    "babel-generator": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-traverse": "^6.26.0",
+    "babel-types": "^6.26.0",
+    "babylon": "^6.18.0",
+    "chalk": "^2.4.1",
+    "commander": "~2.0.0",
+    "yeoman-environment": "^2.3.4",
+    "yeoman-generator": "^2.0.1",
+    "yosay": "^2.0.2"
+  },
+  "devDependencies": {}
+}

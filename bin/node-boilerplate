@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+'use strict';
+
+var program = require('commander');
+
+
+const { createYeomanEnv, CLI_NAME } = require('./utils');
+const env = createYeomanEnv();
+const commands = require('./commands');
+
+
+program
+	.version('0.0.0');
+
+
+
+
+commands.forEach(key => {
+	program
+		.command(`${key}`)
+		.action(function () {
+			env.run(`${CLI_NAME}:${key}`);
+		})
+})
+
+
+
+
+program
+	.on('*', function (name) {
+		console.log('\'' + name + '\' is not a known command. See \'node-mvc --help\':');
+		process.exit(1);
+	});
+
+
+program
+	.parse(process.argv);
+
+if (program.args.length < 1) {
+	console.log('No command specified. See \'node-mvc --help\':');
+	process.exit(1);
+}

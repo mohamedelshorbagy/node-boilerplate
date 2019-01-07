@@ -1,0 +1,21 @@
+{
+    "name": "generator-lab-node-mvc",
+    "version": "0.0.0",
+    "description": "just a test",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "devDependencies": {
+        "morgan": "*",
+        "nodemon": "*"
+    },
+    "dependencies": {
+        "mongoose": "*",
+        "express": "*",
+        "body-parser": "*",
+        "compression": "*",
+        "helmet": "*",
+        "cors": "*"
+    }
+}
