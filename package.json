@@ -1,5 +1,5 @@
 {
-  "name": "node-boilerplate",
+  "name": "node-create-boilerplate",
   "version": "1.0.0",
   "description": "A Command Line Interface for Nodejs Boilerplates",
   "files": [
@@ -10,7 +10,7 @@
     "yeoman-generator"
   ],
   "bin": {
-    "node-boilerplate": "./bin/node-boilerplate"
+    "node-create-boilerplate": "./bin/node-create-boilerplate"
   },
   "scripts": {
     "test": "mocha -R spec"

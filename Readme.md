@@ -1,12 +1,12 @@
 ## Description
 
-A Command Line Interface for Nodejs Boilerplates
+A Command Line Interface for Creating Nodejs Boilerplates
 
 ## Installiation
 
-To install node-boilerplate from npm, run:
+To install node-create-boilerplate from npm, run:
 ```
-npm i -g node-boilerplate
+npm i -g node-create-boilerplate
 ```
 
 Or:
@@ -29,7 +29,7 @@ $ sudo npm link
 
 Enter Command :
 ```
-node-boilerplate app
+node-create-boilerplate app
 ```
 
 ![alt cmd app](assets/1.png)

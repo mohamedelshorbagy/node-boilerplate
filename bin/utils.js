@@ -1,5 +1,5 @@
 const yeomanEnv = require('yeoman-environment');
-const CLI_NAME = 'node-boilerplate';
+const CLI_NAME = 'node-create-boilerplate';
 const commands = require('./commands');
 const createYeomanEnv = () => {
     const env = yeomanEnv.createEnv();
