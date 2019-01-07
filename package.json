@@ -2,7 +2,6 @@
   "name": "node-boilerplate",
   "version": "1.0.0",
   "description": "A Command Line Interface for Nodejs Boilerplates",
-  "private": true,
   "files": [
     "bin",
     "generators"
