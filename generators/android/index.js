@@ -23,11 +23,6 @@ module.exports = class extends Generator {
 
         return this.prompt(prompts).then(props => {
             // To access props later use this.props.someAnswer;
-            // const { hasModel, modelName } = props;
-            // if (hasModel && modelName) {
-            //     props['modelNameCapitalized'] = `${modelName.charAt(0).toUpperCase()}${modelName.substr(1)}`;
-            // }
-            /** @type {String} */
             const { model } = props;
             props['Model'] = `${model.charAt(0).toUpperCase()}${model.substr(1)}`;
             props['model'] = `${model.charAt(0).toLowerCase()}${model.substr(1)}`;
@@ -44,31 +39,19 @@ module.exports = class extends Generator {
         this.props = { ...this.props, appId };
         let globalPath = `app/src/main/java/${appId.split('.').join(path.sep)}`;
         let resourcesPath = `app/src/main/res`;
-        // type = type.toLowerCase();
-        // let ext = ~['javascript', 'babel'].indexOf(type) ? 'js' : 'ts';
 
-
-
-        // `${this.templatePath()}/js/**/!(_)*`
-        // this.fs.copyTpl(
-        //     `${this.templatePath()}/**/!(_)*`,
-        //     this.destinationPath(),
-        //     this.props
-        // )
 
 
         /** @Models
          * 
          */
-        // if (hasModel && modelName) {
-            this.fs.copyTpl(
-                this.templatePath(`model/_model.java`),
-                this.destinationPath(`${globalPath}/model/${Model}.java`),
-                this.props
-            );
-        // }
+        this.fs.copyTpl(
+            this.templatePath(`model/_model.java`),
+            this.destinationPath(`${globalPath}/model/${Model}.java`),
+            this.props
+        );
 
-        /** @Controller
+        /** @Activity
          * 
          */
         this.fs.copyTpl(
@@ -76,6 +59,9 @@ module.exports = class extends Generator {
             this.destinationPath(`${globalPath}/activity/${Model + 'Activity'}.java`),
             this.props
         )
+        /**
+         * @Update AndroidManifest File to add new Activity
+         */
         mainfaistFile = mainfaistFile.split('\n');
         let idx = mainfaistFile.findIndex(it => !!new RegExp(/<\/application>/ig).test(it));
         mainfaistFile.splice(idx, 0, `\t\t<activity android:name=".activity.${Model + 'Activity'}"/>`);
@@ -83,7 +69,7 @@ module.exports = class extends Generator {
         fs.writeFileSync(`${this.destinationPath('app/src/main/AndroidManifest.xml')}`, newData);
 
 
-        /** @Services
+        /** @Adapters
          * 
          */
 
@@ -93,7 +79,7 @@ module.exports = class extends Generator {
             this.props
         )
 
-        /** @Routes
+        /** @XML Files
          * 
          */
 
@@ -113,12 +99,5 @@ module.exports = class extends Generator {
 
 
     }
-
-    // install() {
-    //     this.installDependencies({
-    //         npm: false,
-    //         bower: false
-    //     });
-    // }
     
 };
