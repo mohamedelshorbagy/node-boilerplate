@@ -25,7 +25,7 @@ import <%= appId %>.R;
 import <%= appId %>.adapter.<%= Model %>RVAdapter;
 import <%= appId %>.model.<%= Model %>;
 
-public class <%= Model %>Activity extends AppCompactActivity {
+public class <%= Model %>Activity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     <%= Model %>RVAdapter <%= model %>RVAdapter;
