@@ -1,4 +1,4 @@
-package com.example.sample.adapter;
+package <%= appId %>.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.euroconsult.app.R;
+import <%= appId %>.R;
+import <%= appId %>.model.<%= Model %>;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class <%= Model %>RVAdapter extends RecyclerView.Adapter<<%= Model %>RVAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout._item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.<%= model %>_item, parent, false);
         return new ViewHolder(view);
     }
 

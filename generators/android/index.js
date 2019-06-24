@@ -2,7 +2,9 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-
+const fs = require('fs');
+const { getAppId } = require('../../bin/utils')
+const path = require('path');
 module.exports = class extends Generator {
     prompting() {
         // Have Yeoman greet the user.
@@ -36,7 +38,11 @@ module.exports = class extends Generator {
     writing() {
 
         let { model, Model } = this.props;
-
+        const gradleData = this.fs.read(this.destinationPath('app/build.gradle'))
+        const appId = getAppId(gradleData);
+        this.props = { ...this.props, appId };
+        let globalPath = `app/src/main/java/${appId.split('.').join(path.sep)}`;
+        let resourcesPath = `app/src/main/res`;
         // type = type.toLowerCase();
         // let ext = ~['javascript', 'babel'].indexOf(type) ? 'js' : 'ts';
 
@@ -56,7 +62,7 @@ module.exports = class extends Generator {
         // if (hasModel && modelName) {
             this.fs.copyTpl(
                 this.templatePath(`model/_model.java`),
-                this.destinationPath(`model/${Model}.java`),
+                this.destinationPath(`${globalPath}/model/${Model}.java`),
                 this.props
             );
         // }
@@ -66,7 +72,7 @@ module.exports = class extends Generator {
          */
         this.fs.copyTpl(
             this.templatePath(`activity/_activity.java`),
-            this.destinationPath(`activity/${Model + 'Activity'}.java`),
+            this.destinationPath(`${globalPath}/activity/${Model + 'Activity'}.java`),
             this.props
         )
 
@@ -77,7 +83,7 @@ module.exports = class extends Generator {
 
         this.fs.copyTpl(
             this.templatePath(`adapter/_adapter.java`),
-            this.destinationPath(`adapter/${Model + 'RVAdapter'}.java`),
+            this.destinationPath(`${globalPath}/adapter/${Model + 'RVAdapter'}.java`),
             this.props
         )
 
@@ -85,11 +91,18 @@ module.exports = class extends Generator {
          * 
          */
 
-        // this.fs.copyTpl(
-        //     this.templatePath(`${type}/routes/_route.${ext}`),
-        //     this.destinationPath(`routes/${serviceName}.${ext}`),
-        //     this.props
-        // )
+        this.fs.copyTpl(
+            this.templatePath(`layout/_item.xml`),
+            this.destinationPath(`${resourcesPath}/layout/${model}_item.xml`),
+            this.props
+        )
+
+
+        this.fs.copyTpl(
+            this.templatePath(`layout/_list.xml`),
+            this.destinationPath(`${resourcesPath}/layout/${model}_activity.xml`),
+            this.props
+        )
 
 
 

@@ -1,4 +1,4 @@
-package com.example.sample.activity;
+package <%= appId %>.activity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -20,7 +20,12 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class <%= Model %>Activty extends AppCompactActivity {
+
+import <%= appId %>.R;
+import <%= appId %>.adapter.<%= Model %>RVAdapter;
+import <%= appId %>.model.<%= Model %>;
+
+public class <%= Model %>Activity extends AppCompactActivity {
 
     RecyclerView recyclerView;
     <%= Model %>RVAdapter <%= model %>RVAdapter;
@@ -30,7 +35,7 @@ public class <%= Model %>Activty extends AppCompactActivity {
    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.viewpager_tablayout_activity);
+        setContentView(R.layout.<%= model %>_activity);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

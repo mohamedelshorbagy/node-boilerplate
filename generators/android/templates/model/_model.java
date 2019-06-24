@@ -1,4 +1,4 @@
-package com.example.sample.model;
+package <%= appId %>.model;
 
 
 public class <%= Model %> {
