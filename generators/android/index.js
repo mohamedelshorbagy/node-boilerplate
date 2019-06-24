@@ -39,7 +39,7 @@ module.exports = class extends Generator {
 
         let { model, Model } = this.props;
         const gradleData = this.fs.read(this.destinationPath('app/build.gradle'))
-        const mainfaistFile = this.fs.read(this.destinationPath('app/src/main/AndroidManifest.xml'));
+        let mainfaistFile = this.fs.read(this.destinationPath('app/src/main/AndroidManifest.xml'));
         const appId = getAppId(gradleData);
         this.props = { ...this.props, appId };
         let globalPath = `app/src/main/java/${appId.split('.').join(path.sep)}`;
