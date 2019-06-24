@@ -1,3 +1,4 @@
 module.exports = [
-    'app'
+    'app',
+    'android'
 ]
