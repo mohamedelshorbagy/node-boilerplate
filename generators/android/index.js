@@ -39,6 +39,7 @@ module.exports = class extends Generator {
 
         let { model, Model } = this.props;
         const gradleData = this.fs.read(this.destinationPath('app/build.gradle'))
+        const mainfaistFile = this.fs.read(this.destinationPath('app/src/main/AndroidManifest.xml'));
         const appId = getAppId(gradleData);
         this.props = { ...this.props, appId };
         let globalPath = `app/src/main/java/${appId.split('.').join(path.sep)}`;
@@ -75,6 +76,11 @@ module.exports = class extends Generator {
             this.destinationPath(`${globalPath}/activity/${Model + 'Activity'}.java`),
             this.props
         )
+        mainfaistFile = mainfaistFile.split('\n');
+        let idx = mainfaistFile.findIndex(it => !!new RegExp(/<\/application>/ig).test(it));
+        mainfaistFile.splice(idx, 0, `\t\t<activity android:name=".activity.${Model + 'Activity'}"/>`);
+        let newData = mainfaistFile.join('\n')
+        fs.writeFileSync(`${this.destinationPath('app/src/main/AndroidManifest.xml')}`, newData);
 
 
         /** @Services
