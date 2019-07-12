@@ -1,5 +1,5 @@
 {
-    "name": "generator-lab-node-mvc",
+    "name": "node-app",
     "version": "0.0.0",
     "description": "just a test",
     "scripts": {
@@ -11,7 +11,7 @@
         "nodemon": "*"
     },
     "dependencies": {
-        "mongoose": "*",
+        <% if (hasModel == true) { %> "mongoose": "*", <% } %>
         "express": "*",
         "body-parser": "*",
         "compression": "*",

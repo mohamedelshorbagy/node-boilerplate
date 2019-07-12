@@ -1,4 +1,4 @@
-<% if (hasModel == true) { %> import <%= modelNameCapitalized %> from '../models/<%= modelName %>'; <% } %>
+<% if (hasModel == true) { %>import <%= modelNameCapitalized %> from '../models/<%= modelName %>'; <% } %>
 
 
 

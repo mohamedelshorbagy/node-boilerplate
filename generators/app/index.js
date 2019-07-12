@@ -6,16 +6,16 @@ const yosay = require('yosay');
 module.exports = class extends Generator {
     prompting() {
         // Have Yeoman greet the user.
-        this.log(
-            yosay(`${chalk.blue('Node MVC')}`)
-        );
+        // this.log(
+        //     yosay(`${chalk.blue('Node MVC')}`)
+        // );
 
         const prompts = [
             {
                 type: 'input',
                 name: 'dbName',
                 message: 'DB Name:',
-                default: 'node-mc'
+                default: 'users'
             },
             {
                 type: 'input',
@@ -37,6 +37,12 @@ module.exports = class extends Generator {
                 name: 'modelName',
                 message: 'Model Name:',
                 default: 'user'
+            },
+            {
+                type: 'confirm',
+                name: 'dockerFile',
+                message: 'Add Dockerfile?',
+                default: true
             },
             {
                 type: 'list',
@@ -63,7 +69,7 @@ module.exports = class extends Generator {
 
     writing() {
 
-        let { serviceName, hasModel, modelName, type } = this.props;
+        let { serviceName, hasModel, modelName, type, dockerFile } = this.props;
 
         type = type.toLowerCase();
         let ext = ~['javascript', 'babel'].indexOf(type) ? 'js' : 'ts';
@@ -78,7 +84,18 @@ module.exports = class extends Generator {
         )
 
 
-        /** @Models
+        /** @Package
+         * 
+         */
+        this.fs.copyTpl(
+            this.templatePath(`${type}/_package.json`),
+            this.destinationPath(`package.json`),
+            this.props
+        );
+
+
+
+        /** @Models & DB
          * 
          */
         if (hasModel && modelName) {
@@ -87,6 +104,13 @@ module.exports = class extends Generator {
                 this.destinationPath(`app/models/${modelName}.${ext}`),
                 this.props
             );
+
+            this.fs.copyTpl(
+                this.templatePath(`${type}/config/_db.${ext}`),
+                this.destinationPath(`config/db.${ext}`),
+                this.props
+            );
+
         }
 
         /** @Controller
@@ -120,6 +144,17 @@ module.exports = class extends Generator {
         )
 
 
+        /** @DockerFile
+         * 
+         * 
+         */
+        if (dockerFile) {
+            this.fs.copy(
+                this.templatePath('_Dockerfile'),
+                this.destinationPath('Dockerfile')
+            );
+        }
+
 
     }
 
@@ -129,5 +164,5 @@ module.exports = class extends Generator {
             bower: false
         });
     }
-    
+
 };

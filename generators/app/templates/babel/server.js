@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as mongoose from 'mongoose';
+<% if (hasModel == true) { %>import * as mongoose from 'mongoose'; <% } %>
 import Config from './config/config';
 import expressMiddlewares from './config/express';
 import dbInit from './config/db';
@@ -9,7 +9,7 @@ const app = express();
 const { PORT } = Config;
 
 expressMiddlewares(app);
-dbInit(mongoose);
+<% if (hasModel == true) { %>dbInit(mongoose); <% } %>
 appRoutes(app);
 
 

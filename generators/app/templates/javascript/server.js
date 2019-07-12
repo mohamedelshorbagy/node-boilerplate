@@ -1,5 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
+<% if (hasModel == true) { %>const mongoose = require('mongoose'); <% } %>
+
+
 
 
 
@@ -8,7 +10,8 @@ const app = express();
 
 require('./config/express')(app);
 require('./routes/index')(app);
-require('./config/db')(mongoose);
+<% if (hasModel == true) { %>require('./config/db')(mongoose); <% } %>
+
 
 
 listen();

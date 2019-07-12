@@ -8,9 +8,9 @@ const path = require('path');
 module.exports = class extends Generator {
     prompting() {
         // Have Yeoman greet the user.
-        this.log(
-            yosay(`${chalk.blue('Android')}`)
-        );
+        // this.log(
+        //     yosay(`${chalk.blue('Android')}`)
+        // );
 
         const prompts = [
             {

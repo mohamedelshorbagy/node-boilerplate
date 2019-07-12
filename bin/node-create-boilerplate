@@ -28,7 +28,7 @@ commands.forEach(key => {
 
 program
 	.on('*', function (name) {
-		console.log('\'' + name + '\' is not a known command. See \'node-mvc --help\':');
+		console.log('\'' + name + '\' is not a known command. See \'node-create-boilerplate --help\':');
 		process.exit(1);
 	});
 
@@ -37,6 +37,6 @@ program
 	.parse(process.argv);
 
 if (program.args.length < 1) {
-	console.log('No command specified. See \'node-mvc --help\':');
+	console.log('No command specified. See \'node-create-boilerplate --help\':');
 	process.exit(1);
 }

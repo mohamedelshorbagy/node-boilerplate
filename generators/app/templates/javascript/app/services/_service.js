@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 <% if (hasModel == true) { %>const <%= modelNameCapitalized %> = require('../models/<%= modelName %>'); <% } %>
 const services = {};
 
